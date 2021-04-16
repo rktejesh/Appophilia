@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       title: 'Flutter Demo',
       home: MainPage(),
     );
@@ -32,7 +33,7 @@ class _MainPageState extends State<MainPage>
 
   ScrollController _scrollController;
   TabController _tabController;
-  int currentIndex = 0;
+  int _currentIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -41,19 +42,12 @@ class _MainPageState extends State<MainPage>
       initialScrollOffset: 0,
     );
     _tabController = TabController(
-      length: 3,
+      length: 2,
       vsync: this,
       initialIndex: 0,
     );
     setState(() {});
   }
-
-  void changePage(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
   @override
   void dispose() {
     _tabController.dispose();
@@ -64,6 +58,29 @@ class _MainPageState extends State<MainPage>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _currentIndex,
+          onTap: (value) {
+            setState(() {
+              _currentIndex = value;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined),
+              label: " "
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.circle),
+                label: "  "
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline_outlined),
+              label: " "
+            )
+          ],
+        ),
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
@@ -118,23 +135,35 @@ class _MainPageState extends State<MainPage>
                   child: Container(
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: TabBar(
-                        indicator: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.blueAccent,
-                        ),
-                        enableFeedback: true,
-                        controller: _tabController,
-                        tabs: [
-                          Tab(
-                            child: Text('Hello'),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TabBar(
+                            unselectedLabelColor: Colors.cyan,
+                            isScrollable: true,
+                            indicatorSize: TabBarIndicatorSize.label,
+                            indicator: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.blueAccent,
+                            ),
+                            enableFeedback: true,
+                            controller: _tabController,
+                            tabs: [
+                              Tab(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text('Latest News'),
+                                ),
+                              ),
+                              Tab(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text('Activities'),
+                                )
+                              ),
+                            ],
                           ),
-                          Tab(
-                            child: Text('Hello')
-                          ),
-                          Tab(
-                            child: Text("Hello"),
-                          ),
+                          Icon(Icons.settings_applications),
                         ],
                       ),
                     ),
@@ -158,29 +187,7 @@ class _MainPageState extends State<MainPage>
                           height: 300,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80'),
-                                fit: BoxFit.fill),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15.0),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                  ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        padding:
-                        EdgeInsets.only(bottom: 20, left: 20, right: 20),
-                        height: 240,
-                        width: double.infinity,
-                        child: Container(
-                          height: 300,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW58ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80'),
+                                image: NetworkImage('https://i.pinimg.com/564x/fc/eb/2b/fceb2bd487bb2a53a0135783bd629ece.jpg'),
                                 fit: BoxFit.fill),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(15.0),
