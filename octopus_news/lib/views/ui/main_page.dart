@@ -187,7 +187,7 @@ class _MainPageState extends State<MainPage>
                           height: 300,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: NetworkImage('https://i.pinimg.com/564x/fc/eb/2b/fceb2bd487bb2a53a0135783bd629ece.jpg'),
+                                image: AssetImage('lib/assets/images/taylor.jpg'),
                                 fit: BoxFit.fill),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(15.0),
