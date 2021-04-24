@@ -24,15 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.1
-  transformer_page_view: ^0.1.6
-  smooth_page_indicator: ^0.2.3
-  flutter_inner_drawer: ^1.0.0+1
-  bubble_tab_indicator: ^0.1.5
-  sliver_header_delegate: ^0.0.4
-  material_floating_search_bar: ^0.3.3
-  form_field_validator: ^1.1.0
-  sliver_tools: ^0.2.1
+  cached_network_image: ^3.0.0
+  http: ^0.13.1
   newsapi: ^2.0.0
+  sliver_tools: ^0.2.1
 
 
 
